@@ -1,14 +1,7 @@
 import { z } from 'zod'
+ 
 
-// const MAX_FILE_SIZE = 5 * 1024 * 1024
-// const ACCEPTED_IMAGE_TYPES = [
-//   'image/jpeg',
-//   'image/jpg',
-//   'image/png',
-//   'image/webp'
-// ]
-
-export const serviceValidation = z.object({
+export const solutionsValidation = z.object({
   body: z.object({
     title: z.string(),
     subtitle: z.string()

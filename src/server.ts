@@ -1,13 +1,15 @@
 import mongoose from 'mongoose'
 
 import app from './app'
-import config from './app/config'
+// import config from './app/config'
 
 // import seedSuperAdmin from './app/DB';
 
 async function main() {
   try {
-    await mongoose.connect("mongodb+srv://sharemyshareda:TKQkukp3a5aBVTH7@cluster0.ggaf8mv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+    await mongoose.connect(
+      'mongodb+srv://sharemyshareda:TKQkukp3a5aBVTH7@cluster0.ggaf8mv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+    )
 
     // seedSuperAdmin();
     app.listen(5000, () => {

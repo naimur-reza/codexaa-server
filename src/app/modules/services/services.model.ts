@@ -4,8 +4,7 @@ import { IService } from './service.interface'
 const ServicesSchema = new Schema<IService>(
   {
     tite: {
-      type: String,
- 
+      type: String
     },
     subtitle: {
       type: String
