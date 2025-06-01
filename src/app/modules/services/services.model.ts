@@ -21,7 +21,7 @@ const ServicesSchema = new Schema<IService>(
       type: [String],
       required: [true, 'Features are required'],
       validate: {
-        validator: function(v: string[]) {
+        validator: function (v: string[]) {
           return v.length > 0
         },
         message: 'At least one feature is required'

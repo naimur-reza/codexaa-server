@@ -6,7 +6,9 @@ const createWorkIntoDB = async (payload: IWorks): Promise<IWorks> => {
   return result
 }
 
-const createWorkDetailsIntoDB = async (payload: IWorkDetails): Promise<IWorkDetails> => {
+const createWorkDetailsIntoDB = async (
+  payload: IWorkDetails
+): Promise<IWorkDetails> => {
   const result = await WorkDetails.create(payload)
   return result
 }
@@ -26,7 +28,9 @@ const getSingleWorkFromDB = async (id: string): Promise<IWorks | null> => {
   return result
 }
 
-const getSingleWorkDetailsFromDB = async (id: string): Promise<IWorkDetails | null> => {
+const getSingleWorkDetailsFromDB = async (
+  id: string
+): Promise<IWorkDetails | null> => {
   const result = await WorkDetails.findById(id)
   return result
 }
@@ -36,12 +40,17 @@ const deleteWorkFromDB = async (id: string): Promise<IWorks | null> => {
   return result
 }
 
-const deleteWorkDetailsFromDB = async (id: string): Promise<IWorkDetails | null> => {
+const deleteWorkDetailsFromDB = async (
+  id: string
+): Promise<IWorkDetails | null> => {
   const result = await WorkDetails.findByIdAndDelete(id)
   return result
 }
 
-const updateWork = async (id: string, payload: Partial<IWorks>): Promise<IWorks | null> => {
+const updateWork = async (
+  id: string,
+  payload: Partial<IWorks>
+): Promise<IWorks | null> => {
   const result = await Works.findByIdAndUpdate(id, payload, {
     new: true,
     runValidators: true
@@ -49,7 +58,10 @@ const updateWork = async (id: string, payload: Partial<IWorks>): Promise<IWorks 
   return result
 }
 
-const updateWorkDetails = async (id: string, payload: Partial<IWorkDetails>): Promise<IWorkDetails | null> => {
+const updateWorkDetails = async (
+  id: string,
+  payload: Partial<IWorkDetails>
+): Promise<IWorkDetails | null> => {
   const result = await WorkDetails.findByIdAndUpdate(id, payload, {
     new: true,
     runValidators: true
@@ -62,7 +74,9 @@ const getWorksByCategory = async (category: string): Promise<IWorks[]> => {
   return result
 }
 
-const getWorkDetailsByCategory = async (category: string): Promise<IWorkDetails[]> => {
+const getWorkDetailsByCategory = async (
+  category: string
+): Promise<IWorkDetails[]> => {
   const result = await WorkDetails.find({ category })
   return result
 }

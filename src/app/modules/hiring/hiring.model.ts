@@ -62,7 +62,7 @@ const HiringSchema = new Schema<IHiring>(
       type: [String],
       required: [true, 'Skills are required'],
       validate: {
-        validator: function(v: string[]) {
+        validator: function (v: string[]) {
           return v.length > 0
         },
         message: 'At least one skill is required'
@@ -88,4 +88,4 @@ HiringSchema.index({ category: 1 })
 HiringSchema.index({ companyName: 1 })
 HiringSchema.index({ createdAt: -1 })
 
-export const Hiring = model<IHiring>('Hiring', HiringSchema) 
+export const Hiring = model<IHiring>('Hiring', HiringSchema)

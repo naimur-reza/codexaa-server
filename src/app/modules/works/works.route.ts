@@ -35,7 +35,10 @@ router.post(
 
 router.get('/details', WorksController.getAllWorkDetails)
 
-router.get('/details/category/:category', WorksController.getWorkDetailsByCategory)
+router.get(
+  '/details/category/:category',
+  WorksController.getWorkDetailsByCategory
+)
 
 router.get('/details/:id', WorksController.getSingleWorkDetails)
 

@@ -72,7 +72,7 @@ const ApplicationSchema = new Schema<IApplication>(
         type: [String],
         required: [true, 'Skills are required'],
         validate: {
-          validator: function(v: string[]) {
+          validator: function (v: string[]) {
             return v.length > 0
           },
           message: 'At least one skill is required'
@@ -114,4 +114,4 @@ ApplicationSchema.index({ applicationId: 1 })
 ApplicationSchema.index({ name: 1 })
 ApplicationSchema.index({ createdAt: -1 })
 
-export const Application = model<IApplication>('Application', ApplicationSchema) 
+export const Application = model<IApplication>('Application', ApplicationSchema)

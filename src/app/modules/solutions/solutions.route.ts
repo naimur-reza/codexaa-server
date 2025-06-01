@@ -2,8 +2,8 @@ import { Router } from 'express'
 import { upload } from '../../utils/sendImageToCloudinary'
 import { parseFile } from '../../utils/parseFile'
 import validateRequest from '../../middlewares/validateRequest'
-import { solutionsValidation } from './solutions.validation'
 import { SolutionsController } from './solutions.controller'
+import { solutionSchema } from './solutions.validation'
 
 const router = Router()
 
@@ -11,7 +11,7 @@ router.post(
   '/',
   upload.single('file'),
   parseFile,
-  validateRequest(solutionsValidation),
+  validateRequest(solutionSchema.createSolutionSchema),
   SolutionsController.createSolution
 )
 
@@ -23,7 +23,7 @@ router.patch(
   '/:id',
   upload.single('file'),
   parseFile,
-  validateRequest(solutionsValidation),
+  validateRequest(solutionSchema.updateSolutionSchema),
   SolutionsController.updateSolution
 )
 

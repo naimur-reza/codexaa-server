@@ -113,4 +113,4 @@ WorkDetailsSchema.index({ client: 1 })
 WorkDetailsSchema.index({ createdAt: -1 })
 
 export const Works = model<IWorks>('Works', WorksSchema)
-export const WorkDetails = model<IWorkDetails>('WorkDetails', WorkDetailsSchema) 
+export const WorkDetails = model<IWorkDetails>('WorkDetails', WorkDetailsSchema)

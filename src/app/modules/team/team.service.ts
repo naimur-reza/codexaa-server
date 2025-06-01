@@ -1,7 +1,6 @@
 import { sendImageToCloudinary } from '../../utils/sendImageToCloudinary'
 import { ITeam } from './team.interface'
 import { Team } from './team.model'
- 
 
 interface MulterFile {
   fieldname: string
@@ -14,10 +13,7 @@ interface MulterFile {
   size: number
 }
 
-const createTeamIntoDB = async (
-  data: ITeam,
-  file: MulterFile | undefined
-) => {
+const createTeamIntoDB = async (data: ITeam, file: MulterFile | undefined) => {
   if (file) {
     const imageName = `${new Date()}`
     const path = file?.path
@@ -70,4 +66,4 @@ export const TeamService = {
   getSingleTeamFromDB,
   deleteTeamFromDB,
   updateTeam
-} 
+}

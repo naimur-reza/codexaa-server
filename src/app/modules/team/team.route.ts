@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { upload } from '../../utils/sendImageToCloudinary'
 import { parseFile } from '../../utils/parseFile'
 import validateRequest from '../../middlewares/validateRequest'
- 
+
 import { TeamController } from './team.controller'
 import { teamValidation } from './team.validation'
 

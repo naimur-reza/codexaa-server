@@ -121,16 +121,18 @@ const getWorksByCategory = catchAsync(async (req: Request, res: Response) => {
   })
 })
 
-const getWorkDetailsByCategory = catchAsync(async (req: Request, res: Response) => {
-  const { category } = req.params
-  const result = await WorksService.getWorkDetailsByCategory(category)
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Work details retrieved successfully',
-    data: result
-  })
-})
+const getWorkDetailsByCategory = catchAsync(
+  async (req: Request, res: Response) => {
+    const { category } = req.params
+    const result = await WorksService.getWorkDetailsByCategory(category)
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Work details retrieved successfully',
+      data: result
+    })
+  }
+)
 
 export const WorksController = {
   createWork,
