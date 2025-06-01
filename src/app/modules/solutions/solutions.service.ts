@@ -13,7 +13,10 @@ interface MulterFile {
   size: number
 }
 
-const createSolutionIntoDB = async (data: ISolution, file: MulterFile | undefined) => {
+const createSolutionIntoDB = async (
+  data: ISolution,
+  file: MulterFile | undefined
+) => {
   if (file) {
     const imageName = `${new Date()}`
     const path = file?.path
@@ -40,7 +43,11 @@ const deleteSolutionFromDB = async (solutionId: string) => {
   return res
 }
 
-const updateSolution = async (data: ISolution, solutionId: string, file: MulterFile | undefined) => {
+const updateSolution = async (
+  data: ISolution,
+  solutionId: string,
+  file: MulterFile | undefined
+) => {
   if (file) {
     const imageName = `${new Date()}`
     const path = file?.path

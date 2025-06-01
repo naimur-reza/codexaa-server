@@ -1,6 +1,8 @@
 export interface IService {
-  tite: string
+  title: string
   subtitle: string
   image: string
   features: string[]
+  createdAt?: Date
+  updatedAt?: Date
 }

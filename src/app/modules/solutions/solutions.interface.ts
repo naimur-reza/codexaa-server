@@ -5,4 +5,3 @@ export interface ISolution {
   features: string[]
   buttonTitle: string
 }
-

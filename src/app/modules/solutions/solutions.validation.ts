@@ -1,5 +1,4 @@
 import { z } from 'zod'
- 
 
 export const solutionsValidation = z.object({
   body: z.object({

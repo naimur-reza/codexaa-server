@@ -13,7 +13,10 @@ interface MulterFile {
   size: number
 }
 
-const createServiceIntoDB = async (data: IService, file: MulterFile | undefined) => {
+const createServiceIntoDB = async (
+  data: IService,
+  file: MulterFile | undefined
+) => {
   if (file) {
     const imageName = `${new Date()}`
     const path = file?.path
@@ -41,7 +44,11 @@ const deleteServiceFromDB = async (serviceId: string) => {
   return res
 }
 
-const updateService = async (data: IService, serviceId: string, file: MulterFile | undefined) => {
+const updateService = async (
+  data: IService,
+  serviceId: string,
+  file: MulterFile | undefined
+) => {
   if (file) {
     const imageName = `${new Date()}`
     const path = file?.path
