@@ -8,7 +8,7 @@ import app from './app'
 async function main() {
   try {
     await mongoose.connect(
-      'mongodb+srv://sharemyshareda:TKQkukp3a5aBVTH7@cluster0.ggaf8mv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+      'mongodb+srv://snapyeah456:snapyeah456@cluster0.gs6rung.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
     )
 
     // seedSuperAdmin();

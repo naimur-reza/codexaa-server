@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
-import { IWorks, IWorkDetails } from './works.interface'
+import { IWorks } from './works.interface'
 
-const WorkDetailsSchema = new Schema<IWorkDetails>(
+const WorksSchema = new Schema<IWorks>(
   {
     title: {
       type: String,
@@ -12,6 +12,10 @@ const WorkDetailsSchema = new Schema<IWorkDetails>(
       type: String,
       required: [true, 'Subtitle is required'],
       trim: true
+    },
+    image: {
+      type: String,
+      required: [true, 'Image is required']
     },
     category: {
       type: String,
@@ -72,45 +76,10 @@ const WorkDetailsSchema = new Schema<IWorkDetails>(
   }
 )
 
-const WorksSchema = new Schema<IWorks>(
-  {
-    title: {
-      type: String,
-      required: [true, 'Title is required'],
-      trim: true
-    },
-    subtitle: {
-      type: String,
-      required: [true, 'Subtitle is required'],
-      trim: true
-    },
-    image: {
-      type: String,
-      required: [true, 'Image is required']
-    },
-    category: {
-      type: String,
-      required: [true, 'Category is required'],
-      trim: true
-    }
-  },
-  {
-    timestamps: true,
-    toJSON: {
-      virtuals: true
-    }
-  }
-)
-
 // Add indexes for frequently queried fields
 WorksSchema.index({ title: 1 })
 WorksSchema.index({ category: 1 })
+WorksSchema.index({ client: 1 })
 WorksSchema.index({ createdAt: -1 })
 
-WorkDetailsSchema.index({ title: 1 })
-WorkDetailsSchema.index({ category: 1 })
-WorkDetailsSchema.index({ client: 1 })
-WorkDetailsSchema.index({ createdAt: -1 })
-
 export const Works = model<IWorks>('Works', WorksSchema)
-export const WorkDetails = model<IWorkDetails>('WorkDetails', WorkDetailsSchema)

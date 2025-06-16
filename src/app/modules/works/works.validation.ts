@@ -8,23 +8,9 @@ const createWorkSchema = z.object({
     subtitle: z.string({
       required_error: 'Subtitle is required'
     }),
-    image: z.string({
-      required_error: 'Image is required'
-    }),
-    category: z.string({
-      required_error: 'Category is required'
-    })
-  })
-})
-
-const createWorkDetailsSchema = z.object({
-  body: z.object({
-    title: z.string({
-      required_error: 'Title is required'
-    }),
-    subtitle: z.string({
-      required_error: 'Subtitle is required'
-    }),
+    // image: z.string({
+    //   required_error: 'Image is required'
+    // }),
     category: z.string({
       required_error: 'Category is required'
     }),
@@ -63,14 +49,6 @@ const updateWorkSchema = z.object({
     title: z.string().optional(),
     subtitle: z.string().optional(),
     image: z.string().optional(),
-    category: z.string().optional()
-  })
-})
-
-const updateWorkDetailsSchema = z.object({
-  body: z.object({
-    title: z.string().optional(),
-    subtitle: z.string().optional(),
     category: z.string().optional(),
     year: z.string().optional(),
     client: z.string().optional(),
@@ -86,7 +64,5 @@ const updateWorkDetailsSchema = z.object({
 
 export const worksValidation = {
   createWorkSchema,
-  createWorkDetailsSchema,
-  updateWorkSchema,
-  updateWorkDetailsSchema
+  updateWorkSchema
 }

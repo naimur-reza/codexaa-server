@@ -3,12 +3,6 @@ export interface IWorks {
   subtitle: string
   image: string
   category: string
-}
-
-export interface IWorkDetails {
-  title: string
-  subtitle: string
-  category: string
   year: string
   client: string
   duration: string
@@ -19,3 +13,5 @@ export interface IWorkDetails {
   technologies: string
   liveLink: string
 }
+
+ 

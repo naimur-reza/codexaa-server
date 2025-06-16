@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { ServiceRoutes } from '../modules/services/services.route'
-import { WorksRoutes } from '../modules/works/works.route'
+import worksRoutes from '../modules/works/works.route'
 import { TeamRoutes } from '../modules/team/team.route'
 import { HiringRoutes } from '../modules/hiring/hiring.route'
 import { ApplicationRoutes } from '../modules/application/application.route'
@@ -19,7 +19,7 @@ const moduleRoutes = [
   },
   {
     path: '/works',
-    route: WorksRoutes
+    route: worksRoutes
   },
   {
     path: '/team',

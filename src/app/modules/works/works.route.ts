@@ -2,52 +2,34 @@ import { Router } from 'express'
 import validateRequest from '../../middlewares/validateRequest'
 import { worksValidation } from './works.validation'
 import { WorksController } from './works.controller'
+import { upload } from '../../utils/sendImageToCloudinary'
+import { parseFile } from '../../utils/parseFile'
 
 const router = Router()
 
 // Works routes
 router.post(
   '/',
+  upload.single('image'),
+  parseFile,
   validateRequest(worksValidation.createWorkSchema),
   WorksController.createWork
 )
 
 router.get('/', WorksController.getAllWorks)
 
-router.get('/category/:category', WorksController.getWorksByCategory)
-
 router.get('/:id', WorksController.getSingleWork)
 
 router.patch(
   '/:id',
+  upload.single('image'),
+  parseFile,
   validateRequest(worksValidation.updateWorkSchema),
   WorksController.updateWork
 )
 
 router.delete('/:id', WorksController.deleteWork)
 
-// Work Details routes
-router.post(
-  '/details',
-  validateRequest(worksValidation.createWorkDetailsSchema),
-  WorksController.createWorkDetails
-)
+router.get('/category/:category', WorksController.getWorksByCategory)
 
-router.get('/details', WorksController.getAllWorkDetails)
-
-router.get(
-  '/details/category/:category',
-  WorksController.getWorkDetailsByCategory
-)
-
-router.get('/details/:id', WorksController.getSingleWorkDetails)
-
-router.patch(
-  '/details/:id',
-  validateRequest(worksValidation.updateWorkDetailsSchema),
-  WorksController.updateWorkDetails
-)
-
-router.delete('/details/:id', WorksController.deleteWorkDetails)
-
-export const WorksRoutes = router
+export default router

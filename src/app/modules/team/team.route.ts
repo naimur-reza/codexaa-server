@@ -8,6 +8,28 @@ import { teamValidation } from './team.validation'
 
 const router = Router()
 
+// Team Banner Routes
+router.post(
+  '/banner',
+  upload.array('files', 5),
+  parseFile,
+  TeamController.addTeamBanners
+)
+
+ 
+
+ 
+
+router.patch(
+  '/banner/:id',
+  upload.array('files', 5),
+  parseFile,
+  TeamController.updateTeamBanner
+)
+
+router.delete('/banner/:id', TeamController.deleteTeamBanner)
+
+// Team Member Routes
 router.post(
   '/',
   upload.single('file'),

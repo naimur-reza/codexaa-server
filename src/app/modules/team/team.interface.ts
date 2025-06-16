@@ -1,7 +1,8 @@
-
-
-export interface ITeam {
-  teamBanner: string[]
+export interface ITeamBanner {
+  teamBanners: {
+    _id: string
+    url: string
+  }[]
   teams: ITeamMember[]
 }
 
@@ -15,6 +16,6 @@ export interface ITeamMember {
     behance: string
   }
   description: string
-  image: string
   category: string
 }
+  

@@ -1,49 +1,45 @@
 import { Schema, model } from 'mongoose'
-import { ITeam } from './team.interface'
+import { ITeamBanner } from './team.interface'
 
-const TeamSchema = new Schema<ITeam>(
+const TeamBannerSchema = new Schema<ITeamBanner>(
   {
-    teamBanner: {
-      type: String,
+    teamBanners: {
+      type: [{
+        url: String
+      }],
       required: [true, 'Team banner is required']
     },
-    teams: [
-      {
-        name: {
-          type: String,
-          required: [true, 'Name is required'],
-          trim: true
-        },
-        bio: {
-          type: String,
-          required: [true, 'Bio is required'],
-          trim: true
-        },
-        profileImage: {
-          type: String,
-          required: [true, 'Profile image is required']
-        },
-        socials: {
-          facebook: String,
-          linkedin: String,
-          behance: String
-        },
-        description: {
-          type: String,
-          required: [true, 'Description is required'],
-          trim: true
-        },
-        image: {
-          type: String,
-          required: [true, 'Image is required']
-        },
-        category: {
-          type: String,
-          required: [true, 'Category is required'],
-          trim: true
-        }
+    teams: [{
+      name: {
+        type: String,
+        required: [true, 'Name is required'],
+        trim: true
+      },
+      bio: {
+        type: String,
+        required: [true, 'Bio is required'],
+        trim: true
+      },
+      profileImage: {
+        type: String,
+        required: [true, 'Profile image is required']
+      },
+      socials: {
+        facebook: String,
+        linkedin: String,
+        behance: String
+      },
+      description: {
+        type: String,
+        required: [true, 'Description is required'],
+        trim: true
+      },
+      category: {
+        type: String,
+        required: [true, 'Category is required'],
+        trim: true
       }
-    ]
+    }]
   },
   {
     timestamps: true,
@@ -53,9 +49,16 @@ const TeamSchema = new Schema<ITeam>(
   }
 )
 
-// Add indexes for frequently queried fields
-TeamSchema.index({ 'teams.name': 1 })
-TeamSchema.index({ 'teams.category': 1 })
-TeamSchema.index({ createdAt: -1 })
+// Add virtual for team members
+TeamBannerSchema.virtual('teamMembers', {
+  ref: 'TeamMember',
+  localField: '_id',
+  foreignField: 'team'
+})
 
-export const Team = model<ITeam>('Team', TeamSchema)
+// Add indexes for frequently queried fields
+TeamBannerSchema.index({ 'teams.name': 1 })
+TeamBannerSchema.index({ 'teams.category': 1 })
+TeamBannerSchema.index({ createdAt: -1 })
+
+export const Team = model<ITeamBanner>('Team', TeamBannerSchema)
