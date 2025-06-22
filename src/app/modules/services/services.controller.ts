@@ -6,6 +6,8 @@ import httpStatus from 'http-status'
 const createService = catchAsync(async (req, res) => {
   const data = req.body
   const file = req.file
+
+  console.log(data)
   const result = await OurServices.createServiceIntoDB(data, file)
 
   sendResponse(res, {

@@ -1,5 +1,5 @@
 export interface ITeamBanner {
-  teamBanners: {
+  teamBanners?: {
     _id: string
     url: string
   }[]

@@ -40,7 +40,12 @@ const createHiringSchema = z.object({
     }),
     category: z.string({
       required_error: 'Category is required'
-    })
+    }),
+    metaTitle: z.string().optional(),
+    metaDescription: z.string().optional(),
+    metaTags: z.array(z.string()).optional(),
+    metaImageAlt: z.string().optional(),
+
   })
 })
 
@@ -58,7 +63,11 @@ const updateHiringSchema = z.object({
     reponsibilities: z.string().optional(),
     applicationDeadline: z.string().optional(),
     skillsRequired: z.array(z.string()).optional(),
-    category: z.string().optional()
+    category: z.string().optional(),
+    metaTitle: z.string().optional(),
+    metaDescription: z.string().optional(),
+    metaTags: z.array(z.string()).optional(),
+    metaImageAlt: z.string().optional(),
   })
 })
 

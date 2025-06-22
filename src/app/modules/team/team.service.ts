@@ -38,6 +38,7 @@ const createTeamBanner = async (files: MulterFile[] | undefined) => {
 }
 
 const createTeamMember = async (data: ITeamMember, file: MulterFile) => {
+  
   const imageName = `${new Date()}-${file.originalname}`
   const path = file.path
   const { secure_url } = await sendImageToCloudinary(imageName, path)

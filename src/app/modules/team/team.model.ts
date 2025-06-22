@@ -7,7 +7,7 @@ const TeamBannerSchema = new Schema<ITeamBanner>(
       type: [{
         url: String
       }],
-      required: [true, 'Team banner is required']
+    
     },
     teams: [{
       name: {

@@ -49,6 +49,8 @@ const deleteTeamBanner = catchAsync(async (req, res) => {
 const createTeam = catchAsync(async (req, res) => {
   const data = req.body
   const file = req.file as Express.Multer.File
+
+  console.log("Team Member",data)
   const result = await TeamService.createTeamMember(data, file)
 
   sendResponse(res, {

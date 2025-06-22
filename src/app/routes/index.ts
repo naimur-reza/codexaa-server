@@ -5,6 +5,7 @@ import { TeamRoutes } from '../modules/team/team.route'
 import { HiringRoutes } from '../modules/hiring/hiring.route'
 import { ApplicationRoutes } from '../modules/application/application.route'
 import { SolutionsRoutes } from '../modules/solutions/solutions.route'
+import { AuthRoutes } from '../modules/auth/auth.route'
 
 const router = Router()
 
@@ -32,6 +33,10 @@ const moduleRoutes = [
   {
     path: '/application',
     route: ApplicationRoutes
+  },
+  {
+    path: '/auth',
+    route: AuthRoutes
   }
 ]
 

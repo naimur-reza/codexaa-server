@@ -6,43 +6,33 @@ const socialsSchema = z.object({
   behance: z.string().optional()
 })
 
-const teamMemberSchema = z.object({
-  name: z.string({
-    required_error: 'Name is required'
-  }),
-  bio: z.string({
-    required_error: 'Bio is required'
-  }),
-  profileImage: z.string({
-    required_error: 'Profile image is required'
-  }),
-  socials: socialsSchema,
-  description: z.string({
-    required_error: 'Description is required'
-  }),
-  image: z.string({
-    required_error: 'Image is required'
-  }),
-  category: z.string({
-    required_error: 'Category is required'
-  })
-})
+ 
 
 const createTeamSchema = z.object({
   body: z.object({
-    teamBanner: z.string({
-      required_error: 'Team banner is required'
+    name: z.string({
+      required_error: 'Name is required'
     }),
-    teams: z.array(teamMemberSchema).min(1, {
-      message: 'At least one team member is required'
+    bio: z.string({
+      required_error: 'Bio is required'
+    }),
+    socials: socialsSchema,
+    description: z.string({
+      required_error: 'Description is required'
+    }),
+    category: z.string({
+      required_error: 'Category is required'
     })
   })
 })
 
 const updateTeamSchema = z.object({
   body: z.object({
-    teamBanner: z.string().optional(),
-    teams: z.array(teamMemberSchema).optional()
+    name: z.string().optional(),
+    bio: z.string().optional(),
+    socials: socialsSchema.optional(),
+    description: z.string().optional(),
+    category: z.string().optional()
   })
 })
 

@@ -31,8 +31,30 @@ const SolutionsSchema = new Schema<ISolution>(
       type: String,
       required: [true, 'Button title is required'],
       trim: true
+    },
+      metaTitle: {
+      type: String,
+      required: [true, "Meta title is required"],
+      trim: true
+    },
+    metaDescription: {
+      type: String,
+      required: [true, "Meta Descriptionn is required"],
+      trim: true
+    },
+    metaImageAlt: {
+      type: String,
+      required: [true, "Meta Image Alt Tag is required"],
+      trim: true
+    },
+    metaTags: {
+      type: [String],
+      required: [true, "Meta tags is required"],
+      trim: true
     }
   },
+ 
+  
   {
     timestamps: true,
     toJSON: {
