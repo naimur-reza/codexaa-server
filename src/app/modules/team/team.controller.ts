@@ -16,6 +16,15 @@ const addTeamBanners = catchAsync(async (req, res) => {
   })
 })
 
+const getAllTeamBanner =catchAsync(async(req, res) => {
+  const result = await TeamService.getAllTeamBanner()
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Team banners retreived successfully",
+    data: result
+  })
+})
  
 
  
@@ -113,8 +122,9 @@ const deleteTeam = catchAsync(async (req, res) => {
 export const TeamController = {
   // Team Banner Controllers
   addTeamBanners,
- 
- 
+
+  getAllTeamBanner,
+
   updateTeamBanner,
   deleteTeamBanner,
   // Team Member Controllers

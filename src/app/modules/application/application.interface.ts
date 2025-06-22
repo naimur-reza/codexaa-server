@@ -2,8 +2,8 @@ export interface IApplication {
   name: string
   jobId: string
   applicationId: string
-  applicationScore: string
   contactInformation: string
+  resumeDriveLink: string;
   onlineProfiles: {
     linkedin: string
     github: string

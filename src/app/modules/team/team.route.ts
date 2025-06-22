@@ -18,6 +18,8 @@ router.post(
 
  
 
+router.get("/banner", TeamController.getAllTeamBanner)
+
  
 
 router.patch(

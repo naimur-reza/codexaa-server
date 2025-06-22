@@ -56,6 +56,12 @@ const createTeamMember = async (data: ITeamMember, file: MulterFile) => {
   return res
 }
 
+
+const getAllTeamBanner = async () => {
+  const result = await Team.find({}, { teamBanners: 1, _id: 0 })
+  
+  return result;
+};
  
 
  
@@ -127,8 +133,7 @@ const deleteTeam = async (teamId: string) => {
 export const TeamService = {
   // Banner services
   createTeamBanner,
- 
- 
+  getAllTeamBanner,
   updateTeamBanner,
   deleteTeamBanner,
   // Team member services

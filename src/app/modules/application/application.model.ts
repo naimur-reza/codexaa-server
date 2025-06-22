@@ -18,9 +18,9 @@ const ApplicationSchema = new Schema<IApplication>(
       required: [true, 'Application ID is required'],
       trim: true
     },
-    applicationScore: {
+    resumeDriveLink: {
       type: String,
-      required: [true, 'Application score is required'],
+      required: [true, 'Resume link score is required'],
       trim: true
     },
     contactInformation: {
