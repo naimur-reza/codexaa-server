@@ -6,6 +6,7 @@ import httpStatus from 'http-status'
 // Team Banner Controllers
 const addTeamBanners = catchAsync(async (req, res) => {
   const files = req.files as Express.Multer.File[]
+  console.log(files)
   const result = await TeamService.createTeamBanner(files)
 
   sendResponse(res, {

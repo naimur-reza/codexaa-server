@@ -1,3 +1,4 @@
+import mongoose from 'mongoose'
 import { sendImageToCloudinary } from '../../utils/sendImageToCloudinary'
 import { ITeamMember } from './team.interface'
 import { Team } from './team.model'
@@ -14,6 +15,7 @@ interface MulterFile {
 }
  
 const createTeamBanner = async (files: MulterFile[] | undefined) => {
+  
   if (!files || files.length === 0) {
     throw new Error('No banner images provided')
   }
@@ -89,8 +91,16 @@ const updateTeamBanner = async (bannerId: string, files: MulterFile[]) => {
 }
 
 const deleteTeamBanner = async (bannerId: string) => {
-  const res = await Team.deleteOne({ _id: bannerId })
-  return res
+const result = await Team.updateMany(
+    {},
+    {
+      $pull: {
+        teamBanners: { _id: new mongoose.Types.ObjectId(bannerId) }
+      }
+    }
+  )
+
+  return result
 }
 
 const getAllTeams = async () => {
