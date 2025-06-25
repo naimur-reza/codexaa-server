@@ -41,12 +41,6 @@ const createApplicationSchema = z.object({
     jobId: z.string({
       required_error: 'Job ID is required'
     }),
-    applicationId: z.string({
-      required_error: 'Application ID is required'
-    }),
-    applicationScore: z.string({
-      required_error: 'Application score is required'
-    }),
     contactInformation: z.string({
       required_error: 'Contact information is required'
     }),
@@ -72,8 +66,8 @@ const updateApplicationSchema = z.object({
   body: z.object({
     name: z.string().optional(),
     jobId: z.string().optional(),
-    applicationId: z.string().optional(),
-    applicationScore: z.string().optional(),
+    // applicationId: z.string().optional(),
+    // applicationScore: z.string().optional(),
     contactInformation: z.string().optional(),
     onlineProfiles: onlineProfilesSchema.optional(),
     employeeDetails: employeeDetailsSchema.optional(),

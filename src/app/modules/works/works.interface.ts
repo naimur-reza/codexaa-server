@@ -12,12 +12,10 @@ export interface IWorks {
   solutions: string
   technologies: string
   liveLink: string
-  metaTitle: string;
-  metaDescription:string;
-  metaTags: string[];
-  metaImageAlt: string;
+  metaTitle: string
+  metaDescription: string
+  metaTags: string[]
+  metaImageAlt: string
   createdAt?: Date
   updatedAt?: Date
 }
-
- 

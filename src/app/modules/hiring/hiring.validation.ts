@@ -44,8 +44,7 @@ const createHiringSchema = z.object({
     metaTitle: z.string().optional(),
     metaDescription: z.string().optional(),
     metaTags: z.array(z.string()).optional(),
-    metaImageAlt: z.string().optional(),
-
+    metaImageAlt: z.string().optional()
   })
 })
 
@@ -67,7 +66,7 @@ const updateHiringSchema = z.object({
     metaTitle: z.string().optional(),
     metaDescription: z.string().optional(),
     metaTags: z.array(z.string()).optional(),
-    metaImageAlt: z.string().optional(),
+    metaImageAlt: z.string().optional()
   })
 })
 

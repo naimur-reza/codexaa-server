@@ -1,7 +1,9 @@
 import { TeamMember } from './teamMember.model'
 import { ITeamMember } from './teamMember.interface'
 
-const createTeamMember = async (teamMemberData: ITeamMember): Promise<ITeamMember> => {
+const createTeamMember = async (
+  teamMemberData: ITeamMember
+): Promise<ITeamMember> => {
   const result = await TeamMember.create(teamMemberData)
   return result
 }
@@ -44,4 +46,4 @@ export const TeamMemberService = {
   getTeamMembersByTeam,
   updateTeamMember,
   deleteTeamMember
-} 
+}

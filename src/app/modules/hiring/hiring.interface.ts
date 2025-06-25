@@ -12,10 +12,10 @@ export interface IHiring {
   applicationDeadline: string
   skillsRequired: string[]
   category: string
-  metaTitle: string;
-  metaDescription:string;
-  metaTags: string[];
-  metaImageAlt: string;
+  metaTitle: string
+  metaDescription: string
+  metaTags: string[]
+  metaImageAlt: string
   createdAt?: Date
   updatedAt?: Date
 }

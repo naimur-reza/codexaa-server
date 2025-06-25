@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose'
+import mongoose, { Schema, model } from 'mongoose'
 import { IApplication } from './application.interface'
 
 const ApplicationSchema = new Schema<IApplication>(
@@ -9,18 +9,12 @@ const ApplicationSchema = new Schema<IApplication>(
       trim: true
     },
     jobId: {
-      type: String,
-      required: [true, 'Job ID is required'],
-      trim: true
-    },
-    applicationId: {
-      type: String,
-      required: [true, 'Application ID is required'],
-      trim: true
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Hiring'
     },
     resumeDriveLink: {
       type: String,
-      required: [true, 'Resume link score is required'],
+      required: [true, 'Resume link  is required'],
       trim: true
     },
     contactInformation: {

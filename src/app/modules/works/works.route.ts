@@ -10,7 +10,7 @@ const router = Router()
 // Works routes
 router.post(
   '/',
-  upload.single('image'),
+  upload.single('file'),
   parseFile,
   validateRequest(worksValidation.createWorkSchema),
   WorksController.createWork
@@ -22,7 +22,7 @@ router.get('/:id', WorksController.getSingleWork)
 
 router.patch(
   '/:id',
-  upload.single('image'),
+  upload.single('file'),
   parseFile,
   validateRequest(worksValidation.updateWorkSchema),
   WorksController.updateWork

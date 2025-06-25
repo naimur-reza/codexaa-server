@@ -4,42 +4,45 @@ import { ITeamBanner } from './team.interface'
 const TeamBannerSchema = new Schema<ITeamBanner>(
   {
     teamBanners: {
-      type: [{
-        url: String
-      }],
-    
+      type: [
+        {
+          url: String
+        }
+      ]
     },
-    teams: [{
-      name: {
-        type: String,
-        required: [true, 'Name is required'],
-        trim: true
-      },
-      bio: {
-        type: String,
-        required: [true, 'Bio is required'],
-        trim: true
-      },
-      profileImage: {
-        type: String,
-        required: [true, 'Profile image is required']
-      },
-      socials: {
-        facebook: String,
-        linkedin: String,
-        behance: String
-      },
-      description: {
-        type: String,
-        required: [true, 'Description is required'],
-        trim: true
-      },
-      category: {
-        type: String,
-        required: [true, 'Category is required'],
-        trim: true
+    teams: [
+      {
+        name: {
+          type: String,
+          required: [true, 'Name is required'],
+          trim: true
+        },
+        bio: {
+          type: String,
+          required: [true, 'Bio is required'],
+          trim: true
+        },
+        profileImage: {
+          type: String,
+          required: [true, 'Profile image is required']
+        },
+        socials: {
+          facebook: String,
+          linkedin: String,
+          behance: String
+        },
+        description: {
+          type: String,
+          required: [true, 'Description is required'],
+          trim: true
+        },
+        category: {
+          type: String,
+          required: [true, 'Category is required'],
+          trim: true
+        }
       }
-    }]
+    ]
   },
   {
     timestamps: true,

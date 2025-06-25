@@ -7,8 +7,6 @@ import httpStatus from 'http-status'
 const createWork = catchAsync(async (req: Request, res: Response) => {
   const result = await WorksService.createWorkIntoDB(req.body, req.file)
 
-
-  
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,

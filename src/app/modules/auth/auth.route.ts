@@ -6,4 +6,4 @@ const router = Router()
 router.post('/login', AuthController.login)
 router.post('/change-password', AuthController.changePassword)
 
-export const AuthRoutes = router 
+export const AuthRoutes = router

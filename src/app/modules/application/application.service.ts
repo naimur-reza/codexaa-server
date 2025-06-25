@@ -7,8 +7,18 @@ const createApplicationIntoDB = async (data: IApplication) => {
 }
 
 const getAllApplicationsFromDB = async () => {
-  const res = await Application.find()
-  return res
+  const res = await Application.find().populate('jobId')
+    const updatedApplications = res.map(app => {
+      const appObj = app.toObject();
+      return {
+        ...appObj,
+        jobTitle: (appObj.jobId && typeof appObj.jobId === 'object' && appObj.jobId !== null && (appObj.jobId as { title?: string }).title)
+          ? (appObj.jobId as { title?: string }).title
+          : null,
+      };
+    });
+
+    return updatedApplications;
 }
 
 const getSingleApplicationFromDB = async (applicationId: string) => {

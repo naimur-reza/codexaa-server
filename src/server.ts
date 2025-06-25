@@ -9,10 +9,12 @@ import { SuperAdmin } from './app/modules/auth/auth.model'
 async function createSuperAdmin() {
   // const username = config.super_admin_email
   // const password = config.super_admin_password
-  const username = "codexaa123"
-  const password = "codexaa123"
+  const username = 'codexaa123'
+  const password = 'codexaa123'
   if (!username || !password) {
-    console.warn('Super admin credentials are not set in environment variables.')
+    console.warn(
+      'Super admin credentials are not set in environment variables.'
+    )
     return
   }
   const exists = await SuperAdmin.findOne({ username })

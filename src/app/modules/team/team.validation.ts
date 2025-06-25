@@ -6,8 +6,6 @@ const socialsSchema = z.object({
   behance: z.string().optional()
 })
 
- 
-
 const createTeamSchema = z.object({
   body: z.object({
     name: z.string({

@@ -6,9 +6,9 @@ import httpStatus from 'http-status'
 // Team Banner Controllers
 const addTeamBanners = catchAsync(async (req, res) => {
   const files = req.files as Express.Multer.File[]
-  console.log(files)
   const result = await TeamService.createTeamBanner(files)
 
+  console.log(result)
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -17,18 +17,15 @@ const addTeamBanners = catchAsync(async (req, res) => {
   })
 })
 
-const getAllTeamBanner =catchAsync(async(req, res) => {
+const getAllTeamBanner = catchAsync(async (req, res) => {
   const result = await TeamService.getAllTeamBanner()
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Team banners retreived successfully",
+    message: 'Team banners retreived successfully',
     data: result
   })
 })
- 
-
- 
 
 const updateTeamBanner = catchAsync(async (req, res) => {
   const { id } = req.params
@@ -60,7 +57,7 @@ const createTeam = catchAsync(async (req, res) => {
   const data = req.body
   const file = req.file as Express.Multer.File
 
-  console.log("Team Member",data)
+  console.log('Team Member', data)
   const result = await TeamService.createTeamMember(data, file)
 
   sendResponse(res, {

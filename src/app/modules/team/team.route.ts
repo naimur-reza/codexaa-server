@@ -16,11 +16,7 @@ router.post(
   TeamController.addTeamBanners
 )
 
- 
-
-router.get("/banner", TeamController.getAllTeamBanner)
-
- 
+router.get('/banner', TeamController.getAllTeamBanner)
 
 router.patch(
   '/banner/:id',

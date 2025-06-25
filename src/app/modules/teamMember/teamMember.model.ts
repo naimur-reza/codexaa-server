@@ -56,4 +56,4 @@ TeamMemberSchema.index({ category: 1 })
 TeamMemberSchema.index({ team: 1 })
 TeamMemberSchema.index({ createdAt: -1 })
 
-export const TeamMember = model<ITeamMember>('TeamMember', TeamMemberSchema) 
+export const TeamMember = model<ITeamMember>('TeamMember', TeamMemberSchema)

@@ -73,24 +73,24 @@ const HiringSchema = new Schema<IHiring>(
       required: [true, 'Category is required'],
       trim: true
     },
-        metaTitle: {
+    metaTitle: {
       type: String,
-      required: [true, "Meta title is required"],
+      required: [true, 'Meta title is required'],
       trim: true
     },
     metaDescription: {
       type: String,
-      required: [true, "Meta Descriptionn is required"],
+      required: [true, 'Meta Descriptionn is required'],
       trim: true
     },
     metaImageAlt: {
       type: String,
-      required: [true, "Meta Image Alt Tag is required"],
+      required: [true, 'Meta Image Alt Tag is required'],
       trim: true
     },
     metaTags: {
       type: [String],
-      required: [true, "Meta tags is required"],
+      required: [true, 'Meta tags is required'],
       trim: true
     }
   },
@@ -99,10 +99,7 @@ const HiringSchema = new Schema<IHiring>(
     toJSON: {
       virtuals: true
     }
- 
-  },
-   
- 
+  }
 )
 
 // Add indexes for frequently queried fields

@@ -18,4 +18,3 @@ export interface ITeamMember {
   description: string
   category: string
 }
-  

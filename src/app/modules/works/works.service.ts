@@ -3,9 +3,15 @@ import { Works } from './works.model'
 import { sendImageToCloudinary } from '../../utils/sendImageToCloudinary'
 import { UploadApiResponse } from 'cloudinary'
 
-const createWorkIntoDB = async (payload: IWorks, file?: Express.Multer.File): Promise<IWorks> => {
+const createWorkIntoDB = async (
+  payload: IWorks,
+  file?: Express.Multer.File
+): Promise<IWorks> => {
   if (file) {
-    const result = await sendImageToCloudinary(file.filename, file.path) as UploadApiResponse
+    const result = (await sendImageToCloudinary(
+      file.filename,
+      file.path
+    )) as UploadApiResponse
     payload.image = result.secure_url
   }
   const result = await Works.create(payload)
@@ -33,7 +39,10 @@ const updateWork = async (
   file?: Express.Multer.File
 ): Promise<IWorks | null> => {
   if (file) {
-    const result = await sendImageToCloudinary(file.filename, file.path) as UploadApiResponse
+    const result = (await sendImageToCloudinary(
+      file.filename,
+      file.path
+    )) as UploadApiResponse
     payload.image = result.secure_url
   }
   const result = await Works.findByIdAndUpdate(id, payload, {

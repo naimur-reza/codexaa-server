@@ -1,9 +1,10 @@
+import { Types } from 'mongoose'
 export interface IApplication {
   name: string
-  jobId: string
+  jobId: typeof Types.ObjectId
   applicationId: string
   contactInformation: string
-  resumeDriveLink: string;
+  resumeDriveLink: string
   onlineProfiles: {
     linkedin: string
     github: string

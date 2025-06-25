@@ -15,4 +15,4 @@ export interface ITeamMember extends Document {
   team: Types.ObjectId
   createdAt: Date
   updatedAt: Date
-} 
+}

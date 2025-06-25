@@ -13,9 +13,8 @@ interface MulterFile {
   path: string
   size: number
 }
- 
+
 const createTeamBanner = async (files: MulterFile[] | undefined) => {
-  
   if (!files || files.length === 0) {
     throw new Error('No banner images provided')
   }
@@ -26,22 +25,23 @@ const createTeamBanner = async (files: MulterFile[] | undefined) => {
       const path = file.path
       const { secure_url } = await sendImageToCloudinary(imageName, path)
       return {
- 
+        _id: new mongoose.Types.ObjectId(),
         url: secure_url as string
       }
     })
   )
 
-  const res = await Team.create({
-    teamBanners: bannerUrls,
-    teams: []
-  })
+  const res = await Team.findOneAndUpdate(
+    {},
+    { $push: { teamBanners: { $each: bannerUrls } } },
+    { new: true, upsert: true }
+  )
+
   return res
 }
 
 const createTeamMember = async (data: ITeamMember, file: MulterFile) => {
-  
-  const imageName = `${new Date()}-${file.originalname}`
+  const imageName = `${file.originalname}`
   const path = file.path
   const { secure_url } = await sendImageToCloudinary(imageName, path)
 
@@ -58,40 +58,36 @@ const createTeamMember = async (data: ITeamMember, file: MulterFile) => {
   return res
 }
 
-
 const getAllTeamBanner = async () => {
-  const result = await Team.find({}, { teamBanners: 1, _id: 0 })
-  
-  return result;
-};
- 
+  const result = await Team.findOne({}, { teamBanners: 1, _id: 0 })
+  return result
+}
 
  
 
 const updateTeamBanner = async (bannerId: string, files: MulterFile[]) => {
   if (!files || files.length === 0) {
-    throw new Error('No banner images provided')
+    throw new Error("No banner images provided");
   }
 
-  const bannerUrls = await Promise.all(
-    files.map(async (file) => {
-      const imageName = `${new Date()}-${file.originalname}`
-      const path = file.path
-      const { secure_url } = await sendImageToCloudinary(imageName, path)
-      return secure_url as string
-    })
-  )
+  const file = files[0]; // assuming one banner image per update
+  const imageName = `${Date.now()}-${file.originalname}`;
+  const path = file.path;
+
+  const { secure_url } = await sendImageToCloudinary(imageName, path);
 
   const res = await Team.findOneAndUpdate(
-    { _id: bannerId },
-    { $set: { teamBanners: bannerUrls } },
+    { "teamBanners._id": bannerId }, // find the banner with matching ID
+    { $set: { "teamBanners.$.url": secure_url } }, // update only the matched banner
     { new: true }
-  )
-  return res
-}
+  );
+
+  return res;
+};
+
 
 const deleteTeamBanner = async (bannerId: string) => {
-const result = await Team.updateMany(
+  const result = await Team.updateMany(
     {},
     {
       $pull: {
@@ -104,7 +100,7 @@ const result = await Team.updateMany(
 }
 
 const getAllTeams = async () => {
-  const res = await Team.find()
+  const res = await Team.find({}, { teams: 1, _id: 0 })
   return res
 }
 
@@ -113,7 +109,11 @@ const getSingleTeam = async (teamId: string) => {
   return res
 }
 
-const updateTeam = async (data: ITeamMember, teamId: string, file?: MulterFile) => {
+const updateTeam = async (
+  data: ITeamMember,
+  teamId: string,
+  file?: MulterFile
+) => {
   const updateData = { ...data }
 
   if (file) {
