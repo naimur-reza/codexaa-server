@@ -7,6 +7,8 @@ import { ApplicationRoutes } from '../modules/application/application.route'
 import { SolutionsRoutes } from '../modules/solutions/solutions.route'
 import { AuthRoutes } from '../modules/auth/auth.route'
 import { MetaRoutes } from '../modules/meta.route'
+import { BlogRoutes } from '../modules/blog/blog.route'
+import settingsRoutes from '../modules/settings/settings.route'
 
 const router = Router()
 
@@ -40,8 +42,17 @@ const moduleRoutes = [
     route: AuthRoutes
   },
   {
+    path: "/blogs",
+    route: BlogRoutes
+
+  },
+  {
     path: '/meta',
     route: MetaRoutes
+  },
+  {
+    path: '/settings',
+    route: settingsRoutes
   }
 ]
 
