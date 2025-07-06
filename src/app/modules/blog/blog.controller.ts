@@ -66,4 +66,4 @@ export const BlogController = {
   getSingleBlog,
   updateBlog,
   deleteBlog
-} 
+}

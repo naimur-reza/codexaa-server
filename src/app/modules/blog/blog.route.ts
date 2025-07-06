@@ -4,7 +4,6 @@ import { parseFile } from '../../utils/parseFile'
 import validateRequest from '../../middlewares/validateRequest'
 import { BlogController } from './blog.controller'
 import { blogValidation } from './blog.validation'
- 
 
 const router = Router()
 
@@ -30,4 +29,4 @@ router.patch(
 
 router.delete('/:id', BlogController.deleteBlog)
 
-export const BlogRoutes = router 
+export const BlogRoutes = router

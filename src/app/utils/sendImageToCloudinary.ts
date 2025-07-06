@@ -1,46 +1,49 @@
 import { v2 as cloudinary } from 'cloudinary'
-// import config from '../config'
 import multer from 'multer'
 import fs from 'fs'
+ 
+import os from 'os'
 import { UploadApiResponse } from 'cloudinary'
+import config from '../config'
 
-// todo
+// ⛅️ Send image to Cloudinary
 export const sendImageToCloudinary = async (
   imageName: string,
-  path: string
+  filePath: string
 ): Promise<Record<string, unknown>> => {
   cloudinary.config({
-    cloud_name: 'dxqpqk3jz',
-    api_key: '731424783536331',
-    api_secret: '9Qovom3nA9627FeVph4jD5925so'
+    cloud_name: config.cloudinary_cloud_name,
+    api_key: config.cloudinary_api_key,
+    api_secret: config.cloudinary_api_secret
   })
 
   return new Promise((resolve, reject) => {
     cloudinary.uploader.upload(
-      path,
+      filePath,
       { public_id: imageName },
       function (error, result) {
-        // Delete the file regardless of success or error
-        fs.unlink(path, (err) => {
+        // Delete the file whether it succeeds or fails
+        fs.unlink(filePath, (err) => {
           if (err) {
-            console.error('Error deleting file:', err)
+            console.error('Error deleting temp file:', err)
           }
         })
 
         if (error) {
           reject(error)
-          return
+        } else {
+          resolve(result as UploadApiResponse)
         }
-        resolve(result as UploadApiResponse)
       }
     )
   })
 }
 
-// this is the path to save the file
+// 🧊 Multer config to store file in /tmp (safe for serverless)
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, process.cwd() + '/uploads/') //  <---  here is the path to save the file;
+    const tmpDir = os.tmpdir() // ✅ /tmp directory (writable in serverless)
+    cb(null, tmpDir)
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9)
@@ -48,4 +51,4 @@ const storage = multer.diskStorage({
   }
 })
 
-export const upload = multer({ storage: storage })
+export const upload = multer({ storage })

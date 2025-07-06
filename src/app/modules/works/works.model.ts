@@ -84,7 +84,7 @@ const WorksSchema = new Schema<IWorks>(
     },
     metaTags: {
       type: [String],
-      required: [true, 'Meta tags is required'],
+      required: [true, 'Meta tags is required']
     }
   },
   {

@@ -13,10 +13,7 @@ interface MulterFile {
   size: number
 }
 
-const createBlogIntoDB = async (
-  data: IBlog,
-  file: MulterFile | undefined
-) => {
+const createBlogIntoDB = async (data: IBlog, file: MulterFile | undefined) => {
   if (file) {
     const imageName = `${new Date()}`
     const path = file?.path
@@ -67,4 +64,4 @@ export const BlogService = {
   getSingleBlogFromDB,
   deleteBlogFromDB,
   updateBlog
-} 
+}

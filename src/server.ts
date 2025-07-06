@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import app from './app'
 // import config from './app/config'
 import { SuperAdmin } from './app/modules/auth/auth.model'
+import config from './app/config'
 
 // import seedSuperAdmin from './app/DB';
 
@@ -28,9 +29,7 @@ async function createSuperAdmin() {
 
 async function main() {
   try {
-    await mongoose.connect(
-      'mongodb+srv://snapyeah456:snapyeah456@cluster0.gs6rung.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-    )
+    await mongoose.connect(config.database_url_live!)
 
     // seedSuperAdmin();
     await createSuperAdmin()

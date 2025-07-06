@@ -1,6 +1,7 @@
 export interface NavigationItem {
   title: string
   url: string
+  enabled: boolean
 }
 
 export interface ProductLink {
@@ -19,11 +20,16 @@ export interface HeroSection {
   words: string[]
 }
 
-export interface FooterSection {
-  logo?: string
+export interface Location {
+  country: string
   address: string
   phone: string
   email: string
+}
+
+export interface FooterSection {
+  logo?: string
+  locations: Location[]
   productLinks: ProductLink[]
   socialIcons: SocialIcon[]
 }
@@ -33,4 +39,4 @@ export interface ISettings {
   navLogo?: string
   hero: HeroSection
   footer: FooterSection
-} 
+}

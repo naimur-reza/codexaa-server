@@ -6,7 +6,7 @@ dotenv.config({ path: path.join((process.cwd(), '.env')) })
 export default {
   port: process.env.PORT,
   database_url: process.env.DATABASE_URL,
-  database_url_live: process.env.DATABASE_URL_LIVE,
+  database_url_live: process.env.DATABASE_URL,
   NODE_ENV: process.env.NODE_ENV,
   cloudinary_cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   cloudinary_api_key: process.env.CLOUDINARY_API_KEY,

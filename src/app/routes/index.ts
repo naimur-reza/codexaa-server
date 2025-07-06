@@ -9,6 +9,7 @@ import { AuthRoutes } from '../modules/auth/auth.route'
 import { MetaRoutes } from '../modules/meta.route'
 import { BlogRoutes } from '../modules/blog/blog.route'
 import settingsRoutes from '../modules/settings/settings.route'
+import clientFeedbackRoutes from '../modules/clientFeedback/clientFeedback.route'
 
 const router = Router()
 
@@ -42,9 +43,8 @@ const moduleRoutes = [
     route: AuthRoutes
   },
   {
-    path: "/blogs",
+    path: '/blogs',
     route: BlogRoutes
-
   },
   {
     path: '/meta',
@@ -53,6 +53,10 @@ const moduleRoutes = [
   {
     path: '/settings',
     route: settingsRoutes
+  },
+  {
+    path: '/feedbacks',
+    route: clientFeedbackRoutes
   }
 ]
 

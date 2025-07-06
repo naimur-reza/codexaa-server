@@ -64,4 +64,4 @@ const BlogSchema = new Schema<IBlog>(
 BlogSchema.index({ title: 1 })
 BlogSchema.index({ createdAt: -1 })
 
-export const Blog = model<IBlog>('Blog', BlogSchema) 
+export const Blog = model<IBlog>('Blog', BlogSchema)

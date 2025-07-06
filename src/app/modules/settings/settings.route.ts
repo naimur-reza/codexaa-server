@@ -8,8 +8,22 @@ import { parseFile } from '../../utils/parseFile'
 const router = express.Router()
 
 router.get('/', settingsController.getSettings)
-router.patch('/', validateRequest(settingsUpdateSchema), settingsController.updateSettings)
-router.post('/nav-logo', upload.single('logo'),parseFile, settingsController.uploadNavLogo)
-router.post('/footer-logo', upload.single('logo'),parseFile, settingsController.uploadFooterLogo)
+router.patch(
+  '/',
+  validateRequest(settingsUpdateSchema),
+  settingsController.updateSettings
+)
+router.post(
+  '/nav-logo',
+  upload.single('logo'),
+  parseFile,
+  settingsController.uploadNavLogo
+)
+router.post(
+  '/footer-logo',
+  upload.single('logo'),
+  parseFile,
+  settingsController.uploadFooterLogo
+)
 
-export default router 
+export default router

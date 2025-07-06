@@ -11,4 +11,4 @@ export interface IBlog {
   metaImageAlt: string
   createdAt?: Date
   updatedAt?: Date
-} 
+}

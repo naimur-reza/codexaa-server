@@ -1,35 +1,54 @@
 import { Schema, model } from 'mongoose'
 
-const NavigationItemSchema = new Schema({
-  title: { type: String, required: true },
-  url: { type: String, required: true }
-}, { _id: false })
-
-const ProductLinkSchema = new Schema({
-  title: { type: String, required: true },
-  url: { type: String, required: true }
-}, { _id: false })
-
-const SocialIconSchema = new Schema({
-  icon: { type: String, required: true },
-  url: { type: String, required: true }
-}, { _id: false })
-
-const SettingsSchema = new Schema({
-  navigation: [NavigationItemSchema],
-  navLogo: { type: String },
-  hero: {
-    title: { type: String },
-    subtitle: { type: String }
+const NavigationItemSchema = new Schema(
+  {
+    title: { type: String, required: true },
+    url: { type: String, required: true },
+    enabled: { type: Boolean, default: true }
   },
-  footer: {
-    logo: { type: String },
-    address: { type: String },
-    phone: { type: String },
-    email: { type: String },
-    productLinks: [ProductLinkSchema],
-    socialIcons: [SocialIconSchema]
-  }
-}, { timestamps: true })
+  { _id: false }
+)
 
-export const Settings = model('Settings', SettingsSchema) 
+const ProductLinkSchema = new Schema(
+  {
+    title: { type: String, required: true },
+    url: { type: String, required: true }
+  },
+  { _id: false }
+)
+
+const SocialIconSchema = new Schema(
+  {
+    icon: { type: String, required: true },
+    url: { type: String, required: true }
+  },
+  { _id: false }
+)
+
+const SettingsSchema = new Schema(
+  {
+    navigation: [NavigationItemSchema],
+    navLogo: { type: String },
+    hero: {
+      title: { type: String },
+      subtitle: { type: String },
+      words: [{ type: String }]
+    },
+    footer: {
+      logo: { type: String },
+      locations: [
+        {
+          country: { type: String },
+          address: { type: String },
+          phone: { type: String },
+          email: { type: String }
+        }
+      ],
+      productLinks: [ProductLinkSchema],
+      socialIcons: [SocialIconSchema]
+    }
+  },
+  { timestamps: true }
+)
+
+export const Settings = model('Settings', SettingsSchema)

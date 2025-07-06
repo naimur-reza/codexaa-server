@@ -9,10 +9,13 @@ const app: Application = express()
 app.use(express.json())
 app.use(
   cors({
-    origin: 'http://localhost:3000',
-    credentials: true
+    origin: 'https://codexaa-frontend-sigma.vercel.app',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 )
+ 
 
 // application routes
 app.use('/api/v1', router)
