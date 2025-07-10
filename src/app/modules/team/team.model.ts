@@ -31,14 +31,14 @@ const TeamBannerSchema = new Schema<ITeamBanner>(
           linkedin: String,
           behance: String
         },
-        description: {
-          type: String,
-          required: [true, 'Description is required'],
-          trim: true
-        },
         category: {
           type: String,
           required: [true, 'Category is required'],
+          trim: true
+        },
+        role: {
+          type: String,
+          required: [true, 'Role is required'],
           trim: true
         }
       }

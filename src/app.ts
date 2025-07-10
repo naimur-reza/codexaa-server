@@ -5,17 +5,18 @@ import { globalErrorHandler, notFound } from './app/middlewares/errorHandler'
 
 const app: Application = express()
 
+
+const allowedOrigins = ["https://codexaa.com", "https://www.codexaa.com", "http://localhost:3000"];
 //parsers
 app.use(express.json())
 app.use(
   cors({
-    origin: 'https://codexaa-frontend-sigma.vercel.app',
+    origin: allowedOrigins,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization']
   })
 )
- 
 
 // application routes
 app.use('/api/v1', router)

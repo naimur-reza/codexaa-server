@@ -15,11 +15,11 @@ const createTeamSchema = z.object({
       required_error: 'Bio is required'
     }),
     socials: socialsSchema,
-    description: z.string({
-      required_error: 'Description is required'
-    }),
     category: z.string({
       required_error: 'Category is required'
+    }),
+    role: z.string({
+      required_error: 'Role is required'
     })
   })
 })
@@ -29,8 +29,8 @@ const updateTeamSchema = z.object({
     name: z.string().optional(),
     bio: z.string().optional(),
     socials: socialsSchema.optional(),
-    description: z.string().optional(),
-    category: z.string().optional()
+    category: z.string().optional(),
+    role: z.string().optional()
   })
 })
 

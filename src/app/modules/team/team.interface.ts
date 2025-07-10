@@ -15,6 +15,6 @@ export interface ITeamMember {
     linkedin: string
     behance: string
   }
-  description: string
   category: string
+  role: string
 }

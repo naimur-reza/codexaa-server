@@ -113,21 +113,25 @@ const updateTeam = async (
 ) => {
   const updateData = { ...data }
 
+  // Only process image if file is provided
   if (file) {
-    const imageName = `${new Date()}-${file.originalname}`
+    console.log('File provided for update:', file)
+    const imageName = `${file.originalname}`
     const path = file.path
     const { secure_url } = await sendImageToCloudinary(imageName, path)
     updateData.profileImage = secure_url as string
   }
+
+  console.log('Update data:', data)
 
   const res = await Team.findOneAndUpdate(
     { 'teams._id': teamId },
     { $set: { 'teams.$': updateData } },
     { new: true }
   )
+
   return res
 }
-
 const deleteTeam = async (teamId: string) => {
   const res = await Team.findOneAndUpdate(
     { 'teams._id': teamId },
