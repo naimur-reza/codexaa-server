@@ -27,7 +27,7 @@ async function createSuperAdmin() {
     await Users.create({
       username,
       password: hashedPassword,
-      role: userRole.ADMIN,
+      role: userRole.SUPER_ADMIN,
       status: 'active',
       email: 'codexaa@gmail.com'
     })
