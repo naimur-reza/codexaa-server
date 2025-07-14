@@ -10,7 +10,10 @@ const createUser = z.object({
     .string()
     .min(6, 'Password must be at least 6 characters long')
     .max(50, 'Password must not exceed 50 characters'),
-  role: z.enum(['admin', 'moderator']).optional().default('moderator'),
+  role: z
+    .enum(['super_admin', 'admin', 'moderator'])
+    .optional()
+    .default('moderator'),
   status: z.enum(['active', 'inactive']).optional().default('active')
 })
 

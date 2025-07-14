@@ -5,7 +5,12 @@ import { UserController } from './user.controller'
 
 const router = Router()
 
-router.post('/', UserController.createUser)
+router.post(
+  '/',
+
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
+  UserController.createUser
+)
 
 router.get(
   '/',
@@ -15,16 +20,20 @@ router.get(
 
 router.get(
   '/:id',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   UserController.getUserByUsername
 )
 
 router.patch(
   '/:id',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
   UserController.updateUser
 )
 
-router.delete('/:id', auth(userRole.ADMIN), UserController.deleteUser)
+router.delete(
+  '/:id',
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
+  UserController.deleteUser
+)
 
 export const UserRoutes = router

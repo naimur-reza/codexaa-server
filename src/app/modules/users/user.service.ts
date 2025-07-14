@@ -5,6 +5,7 @@ import { IUser } from './user.validation'
 const createUser = async (userData: IUser) => {
   const hashedPassword = hashPassword(userData.password)
   userData.password = hashedPassword
+  console.log(userData)
   const user = await Users.create(userData)
   return user
 }
@@ -22,8 +23,6 @@ const getUserByUsername = async (id: string) => {
 }
 
 const updateUser = async (id: string, updateData: Partial<IUser>) => {
-  console.log(id)
-  console.log(updateData)
   const user = await Users.findOneAndUpdate({ _id: id }, updateData, {
     new: true
   })

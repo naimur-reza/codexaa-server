@@ -3,13 +3,18 @@ import { generateAccessToken } from '../../utils/generateToken'
 
 import bcrypt from 'bcrypt'
 import { Users } from '../users/user.model'
+import GenericError from '../../errors/GenericError'
 
 const login = async (username: string, password: string) => {
   const user = await Users.findOne({ username })
-  console.log(user)
-  if (!user) throw new Error('Invalid credentials')
+
+  if (user?.status === 'inactive') {
+    throw new GenericError(403, 'User is inactive')
+  }
+
+  if (!user) throw new GenericError(401, 'Invalid credentials')
   const isMatch = await bcrypt.compare(password, user.password)
-  if (!isMatch) throw new Error('Invalid credentials')
+  if (!isMatch) throw new GenericError(401, 'Invalid credentials')
   const userObj = user.toObject()
   delete (userObj as { password?: string }).password
   const token = generateAccessToken(

@@ -11,7 +11,7 @@ const router = Router()
 
 router.post(
   '/',
-  auth(userRole.ADMIN),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
   upload.single('file'),
   parseFile,
   validateRequest(clientFeedbackValidation.createClientFeedbackSchema),
@@ -24,7 +24,7 @@ router.get('/:id', ClientFeedbackController.getSingleClientFeedback)
 
 router.patch(
   '/:id',
-  auth(userRole.ADMIN),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
   upload.single('file'),
   parseFile,
   validateRequest(clientFeedbackValidation.updateClientFeedbackSchema),
@@ -33,7 +33,7 @@ router.patch(
 
 router.delete(
   '/:id',
-  auth(userRole.ADMIN),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
   ClientFeedbackController.deleteClientFeedback
 )
 

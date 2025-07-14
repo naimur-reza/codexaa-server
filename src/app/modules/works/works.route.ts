@@ -12,7 +12,7 @@ const router = Router()
 // Works routes
 router.post(
   '/',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   upload.single('file'),
   parseFile,
   validateRequest(worksValidation.createWorkSchema),
@@ -25,14 +25,18 @@ router.get('/:id', WorksController.getSingleWork)
 
 router.patch(
   '/:id',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   upload.single('file'),
   parseFile,
   validateRequest(worksValidation.updateWorkSchema),
   WorksController.updateWork
 )
 
-router.delete('/:id', auth(userRole.ADMIN), WorksController.deleteWork)
+router.delete(
+  '/:id',
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
+  WorksController.deleteWork
+)
 
 router.get('/category/:category', WorksController.getWorksByCategory)
 

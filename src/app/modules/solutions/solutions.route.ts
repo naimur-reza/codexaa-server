@@ -11,7 +11,7 @@ const router = Router()
 
 router.post(
   '/',
-  auth(userRole.ADMIN),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
   upload.single('file'),
   parseFile,
   validateRequest(solutionSchema.createSolutionSchema),
@@ -24,13 +24,17 @@ router.get('/:id', SolutionsController.getSingleSolution)
 
 router.patch(
   '/:id',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   upload.single('file'),
   parseFile,
   validateRequest(solutionSchema.updateSolutionSchema),
   SolutionsController.updateSolution
 )
 
-router.delete('/:id', auth(userRole.ADMIN), SolutionsController.deleteSolution)
+router.delete(
+  '/:id',
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
+  SolutionsController.deleteSolution
+)
 
 export const SolutionsRoutes = router

@@ -9,26 +9,26 @@ const router = Router()
 
 router.post(
   '/',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   validateRequest(applicationValidation.createApplicationSchema),
   ApplicationController.createApplication
 )
 
 router.get(
   '/',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   ApplicationController.getAllApplications
 )
 
 router.get(
   '/job/:jobId',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   ApplicationController.getApplicationsByJobId
 )
 
 router.get(
   '/:id',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   ApplicationController.getSingleApplication
 )
 
@@ -46,7 +46,7 @@ router.patch(
 
 router.delete(
   '/:id',
-  auth(userRole.ADMIN),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
   ApplicationController.deleteApplication
 )
 

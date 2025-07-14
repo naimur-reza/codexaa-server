@@ -9,7 +9,7 @@ const router = Router()
 
 router.post(
   '/',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   validateRequest(hiringValidation.createHiringSchema),
   HiringController.createHiring
 )
@@ -22,7 +22,7 @@ router.get('/:id', HiringController.getSingleHiring)
 
 router.patch(
   '/:id',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   validateRequest(hiringValidation.updateHiringSchema),
   HiringController.updateHiring
 )
@@ -30,7 +30,7 @@ router.patch(
 router.delete(
   '/:id',
 
-  auth(userRole.ADMIN),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
   HiringController.deleteHiring
 )
 

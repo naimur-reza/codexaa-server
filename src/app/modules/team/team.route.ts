@@ -13,7 +13,7 @@ const router = Router()
 // Team Banner Routes
 router.post(
   '/banner',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   upload.array('files', 5),
   parseFile,
   TeamController.addTeamBanners
@@ -31,14 +31,14 @@ router.patch(
 
 router.delete(
   '/banner/:id',
-  auth(userRole.ADMIN),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
   TeamController.deleteTeamBanner
 )
 
 // Team Member Routes
 router.post(
   '/',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   upload.single('file'),
   parseFile,
   validateRequest(teamValidation.createTeamSchema),
@@ -51,13 +51,17 @@ router.get('/:id', TeamController.getSingleTeam)
 
 router.patch(
   '/:id',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   upload.single('file'),
   parseFile,
   validateRequest(teamValidation.updateTeamSchema),
   TeamController.updateTeam
 )
 
-router.delete('/:id', auth(userRole.ADMIN), TeamController.deleteTeam)
+router.delete(
+  '/:id',
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
+  TeamController.deleteTeam
+)
 
 export const TeamRoutes = router

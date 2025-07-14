@@ -40,11 +40,9 @@ export const auth = (...requiredRoles: USER_ROLE[]) => {
       requiredRoles.length &&
       !requiredRoles.includes(user.role as USER_ROLE)
     ) {
-      console.log(requiredRoles, user.role)
-      console.log('Forbidden access')
       res.status(403).json({
         status: 403,
-        message: 'Forbidden'
+        message: 'Forbidden access'
       })
       return
     }

@@ -11,7 +11,7 @@ const router = Router()
 
 router.post(
   '/',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   upload.single('file'),
   parseFile,
   validateRequest(blogValidation.createBlogSchema),
@@ -24,7 +24,7 @@ router.get('/:id', BlogController.getSingleBlog)
 
 router.patch(
   '/:id',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   upload.single('file'),
   parseFile,
   validateRequest(blogValidation.updateBlogSchema),
@@ -34,7 +34,7 @@ router.patch(
 router.delete(
   '/:id',
 
-  auth(userRole.ADMIN),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
   BlogController.deleteBlog
 )
 

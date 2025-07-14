@@ -11,7 +11,7 @@ const router = Router()
 
 router.post(
   '/',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   upload.single('file'),
   parseFile,
   validateRequest(serviceValidation),
@@ -24,13 +24,17 @@ router.get('/:id', ServicesController.getSingleService)
 
 router.patch(
   '/:id',
-  auth(userRole.ADMIN, userRole.MODERATOR),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
   upload.single('file'),
   parseFile,
   validateRequest(serviceValidation),
   ServicesController.updateService
 )
 
-router.delete('/:id', auth(userRole.ADMIN), ServicesController.deleteService)
+router.delete(
+  '/:id',
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
+  ServicesController.deleteService
+)
 
 export const ServiceRoutes = router

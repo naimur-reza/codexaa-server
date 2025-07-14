@@ -9,28 +9,23 @@ import { userRole } from '../../constant/userRole'
 
 const router = express.Router()
 
-router.get(
-  '/',
-  auth(userRole.ADMIN, userRole.MODERATOR),
-  settingsController.getSettings
-)
+router.get('/', settingsController.getSettings)
 router.patch(
   '/',
-  auth(userRole.ADMIN),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
   validateRequest(settingsUpdateSchema),
   settingsController.updateSettings
 )
 router.post(
   '/nav-logo',
-  auth(userRole.ADMIN),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
   upload.single('logo'),
   parseFile,
   settingsController.uploadNavLogo
 )
 router.post(
   '/footer-logo',
-
-  auth(userRole.ADMIN),
+  auth(userRole.SUPER_ADMIN, userRole.ADMIN),
   upload.single('logo'),
   parseFile,
   settingsController.uploadFooterLogo
