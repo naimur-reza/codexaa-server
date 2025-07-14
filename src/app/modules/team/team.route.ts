@@ -19,11 +19,7 @@ router.post(
   TeamController.addTeamBanners
 )
 
-router.get(
-  '/banner',
-  auth(userRole.ADMIN, userRole.MODERATOR),
-  TeamController.getAllTeamBanner
-)
+router.get('/banner', TeamController.getAllTeamBanner)
 
 router.patch(
   '/banner/:id',
@@ -49,23 +45,15 @@ router.post(
   TeamController.createTeam
 )
 
-router.get(
-  '/',
-  auth(userRole.ADMIN, userRole.MODERATOR),
-  TeamController.getAllTeams
-)
+router.get('/', TeamController.getAllTeams)
 
-router.get(
-  '/:id',
-  auth(userRole.ADMIN, userRole.MODERATOR),
-  TeamController.getSingleTeam
-)
+router.get('/:id', TeamController.getSingleTeam)
 
 router.patch(
   '/:id',
+  auth(userRole.ADMIN, userRole.MODERATOR),
   upload.single('file'),
   parseFile,
-  auth(userRole.ADMIN, userRole.MODERATOR),
   validateRequest(teamValidation.updateTeamSchema),
   TeamController.updateTeam
 )

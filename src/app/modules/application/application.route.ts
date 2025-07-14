@@ -2,20 +2,35 @@ import { Router } from 'express'
 import validateRequest from '../../middlewares/validateRequest'
 import { applicationValidation } from './application.validation'
 import { ApplicationController } from './application.controller'
+import { auth } from '../../middlewares/auth'
+import { userRole } from '../../constant/userRole'
 
 const router = Router()
 
 router.post(
   '/',
+  auth(userRole.ADMIN, userRole.MODERATOR),
   validateRequest(applicationValidation.createApplicationSchema),
   ApplicationController.createApplication
 )
 
-router.get('/', ApplicationController.getAllApplications)
+router.get(
+  '/',
+  auth(userRole.ADMIN, userRole.MODERATOR),
+  ApplicationController.getAllApplications
+)
 
-router.get('/job/:jobId', ApplicationController.getApplicationsByJobId)
+router.get(
+  '/job/:jobId',
+  auth(userRole.ADMIN, userRole.MODERATOR),
+  ApplicationController.getApplicationsByJobId
+)
 
-router.get('/:id', ApplicationController.getSingleApplication)
+router.get(
+  '/:id',
+  auth(userRole.ADMIN, userRole.MODERATOR),
+  ApplicationController.getSingleApplication
+)
 
 router.patch(
   '/:id',
@@ -29,6 +44,10 @@ router.patch(
   ApplicationController.updateApplicationScore
 )
 
-router.delete('/:id', ApplicationController.deleteApplication)
+router.delete(
+  '/:id',
+  auth(userRole.ADMIN),
+  ApplicationController.deleteApplication
+)
 
 export const ApplicationRoutes = router

@@ -4,11 +4,14 @@ import { parseFile } from '../../utils/parseFile'
 import validateRequest from '../../middlewares/validateRequest'
 import { serviceValidation } from './services.validation'
 import { ServicesController } from './services.controller'
+import { auth } from '../../middlewares/auth'
+import { userRole } from '../../constant/userRole'
 
 const router = Router()
 
 router.post(
   '/',
+  auth(userRole.ADMIN, userRole.MODERATOR),
   upload.single('file'),
   parseFile,
   validateRequest(serviceValidation),
@@ -21,12 +24,13 @@ router.get('/:id', ServicesController.getSingleService)
 
 router.patch(
   '/:id',
+  auth(userRole.ADMIN, userRole.MODERATOR),
   upload.single('file'),
   parseFile,
   validateRequest(serviceValidation),
   ServicesController.updateService
 )
 
-router.delete('/:id', ServicesController.deleteService)
+router.delete('/:id', auth(userRole.ADMIN), ServicesController.deleteService)
 
 export const ServiceRoutes = router
