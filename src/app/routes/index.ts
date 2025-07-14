@@ -10,6 +10,7 @@ import { MetaRoutes } from '../modules/meta.route'
 import { BlogRoutes } from '../modules/blog/blog.route'
 import settingsRoutes from '../modules/settings/settings.route'
 import clientFeedbackRoutes from '../modules/clientFeedback/clientFeedback.route'
+import { UserRoutes } from '../modules/users/user.route'
 
 const router = Router()
 
@@ -41,6 +42,10 @@ const moduleRoutes = [
   {
     path: '/auth',
     route: AuthRoutes
+  },
+  {
+    path: '/users',
+    route: UserRoutes
   },
   {
     path: '/blogs',

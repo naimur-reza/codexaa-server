@@ -1,14 +1,25 @@
-import { SuperAdmin } from './auth.model'
+import { userRole } from '../../constant/userRole'
+import { generateAccessToken } from '../../utils/generateToken'
+
 import bcrypt from 'bcrypt'
+import { Users } from '../users/user.model'
 
 const login = async (username: string, password: string) => {
-  const admin = await SuperAdmin.findOne({ username })
-  if (!admin) throw new Error('Invalid credentials')
-  const isMatch = await bcrypt.compare(password, admin.password)
+  const user = await Users.findOne({ username })
+  console.log(user)
+  if (!user) throw new Error('Invalid credentials')
+  const isMatch = await bcrypt.compare(password, user.password)
   if (!isMatch) throw new Error('Invalid credentials')
-  const adminObj = admin.toObject()
-  delete (adminObj as { password?: string }).password
-  return adminObj
+  const userObj = user.toObject()
+  delete (userObj as { password?: string }).password
+  const token = generateAccessToken(
+    { id: user._id, role: user.role },
+    process.env.JWT_SECRET!
+  )
+  return {
+    user: userObj,
+    token
+  }
 }
 
 const changePassword = async (
@@ -16,7 +27,8 @@ const changePassword = async (
   oldPassword: string,
   newPassword: string
 ) => {
-  const admin = await SuperAdmin.findById(adminId)
+  const admin = await Users.findById(adminId)
+
   if (!admin) throw new Error('Admin not found')
   const isMatch = await bcrypt.compare(oldPassword, admin.password)
   if (!isMatch) throw new Error('Old password is incorrect')

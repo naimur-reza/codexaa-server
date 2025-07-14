@@ -2,25 +2,35 @@ import mongoose from 'mongoose'
 
 import app from './app'
 // import config from './app/config'
-import { SuperAdmin } from './app/modules/auth/auth.model'
+
 import config from './app/config'
+import { Users } from './app/modules/users/user.model'
+import { userRole } from './app/constant/userRole'
+import hashPassword from './app/utils/hashPassword'
 
 // import seedSuperAdmin from './app/DB';
 
 async function createSuperAdmin() {
   // const username = config.super_admin_email
   // const password = config.super_admin_password
-  const username = 'codexaa123'
-  const password = 'codexaa123'
+  const username = process.env.SUPER_ADMIN_USERNAME
+  const password = process.env.SUPER_ADMIN_PASSWORD
+  const hashedPassword = hashPassword(password!)
   if (!username || !password) {
     console.warn(
       'Super admin credentials are not set in environment variables.'
     )
     return
   }
-  const exists = await SuperAdmin.findOne({ username })
+  const exists = await Users.findOne({ username })
   if (!exists) {
-    await SuperAdmin.create({ username, password })
+    await Users.create({
+      username,
+      password: hashedPassword,
+      role: userRole.ADMIN,
+      status: 'active',
+      email: 'codexaa@gmail.com'
+    })
     console.log('Super admin created.')
   } else {
     console.log('Super admin already exists.')
