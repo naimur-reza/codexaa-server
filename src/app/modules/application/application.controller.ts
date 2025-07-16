@@ -5,7 +5,7 @@ import httpStatus from 'http-status'
 
 const createApplication = catchAsync(async (req, res) => {
   const data = req.body
-  const result = await ApplicationService.createApplicationIntoDB(data)
+  const result = await ApplicationService.createApplicationIntoDB(data, req.file  )
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

@@ -4,12 +4,15 @@ import { applicationValidation } from './application.validation'
 import { ApplicationController } from './application.controller'
 import { auth } from '../../middlewares/auth'
 import { userRole } from '../../constant/userRole'
+import { parseFile } from '../../utils/parseFile'
+import { upload } from '../../utils/sendImageToCloudinary'
 
 const router = Router()
 
 router.post(
   '/',
-  auth(userRole.SUPER_ADMIN, userRole.ADMIN, userRole.MODERATOR),
+  upload.single('file'),
+  parseFile,
   validateRequest(applicationValidation.createApplicationSchema),
   ApplicationController.createApplication
 )

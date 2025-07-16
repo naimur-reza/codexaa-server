@@ -8,14 +8,18 @@ const ApplicationSchema = new Schema<IApplication>(
       required: [true, 'Name is required'],
       trim: true
     },
+    email: {
+      type: String,
+      required: [true, 'Email is required'],
+      unique: true
+    },
+    resume: {
+      type: String,
+      required: [true, 'Resume is required']
+    },
     jobId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Hiring'
-    },
-    resumeDriveLink: {
-      type: String,
-      required: [true, 'Resume link  is required'],
-      trim: true
     },
     contactInformation: {
       type: String,
@@ -40,43 +44,11 @@ const ApplicationSchema = new Schema<IApplication>(
       }
     },
     employeeDetails: {
-      currentCompany: {
-        type: String,
-        required: [true, 'Current company is required'],
-        trim: true
-      },
-      expectedSalary: {
-        type: String,
-        required: [true, 'Expected salary is required'],
-        trim: true
-      },
       availableFrom: {
         type: String,
         required: [true, 'Available from date is required'],
         trim: true
       }
-    },
-    education: {
-      institution: {
-        type: String,
-        required: [true, 'Institution is required'],
-        trim: true
-      },
-      skills: {
-        type: [String],
-        required: [true, 'Skills are required'],
-        validate: {
-          validator: function (v: string[]) {
-            return v.length > 0
-          },
-          message: 'At least one skill is required'
-        }
-      }
-    },
-    workExperience: {
-      type: String,
-      required: [true, 'Work experience is required'],
-      trim: true
     },
     whyShouldHire: {
       type: String,

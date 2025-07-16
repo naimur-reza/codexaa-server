@@ -1,7 +1,19 @@
+import { sendImageToCloudinary } from '../../utils/sendImageToCloudinary'
 import { IApplication } from './application.interface'
 import { Application } from './application.model'
 
-const createApplicationIntoDB = async (data: IApplication) => {
+const createApplicationIntoDB = async (
+  data: IApplication,
+  file?: Express.Multer.File
+) => {
+  if (file) {
+    const imageName = file.originalname
+    const path = file?.path
+    const { secure_url } = await sendImageToCloudinary(imageName, path, 'raw')
+    data.resume = secure_url as string
+  }
+
+  console.log('data', data)
   const res = await Application.create(data)
   return res
 }

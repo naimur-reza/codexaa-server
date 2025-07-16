@@ -9,7 +9,8 @@ import config from '../config'
 // ⛅️ Send image to Cloudinary
 export const sendImageToCloudinary = async (
   imageName: string,
-  filePath: string
+  filePath: string,
+  resource_type: 'image' | 'raw' = 'image'
 ): Promise<Record<string, unknown>> => {
   cloudinary.config({
     cloud_name: config.cloudinary_cloud_name,
@@ -20,7 +21,7 @@ export const sendImageToCloudinary = async (
   return new Promise((resolve, reject) => {
     cloudinary.uploader.upload(
       filePath,
-      { public_id: imageName },
+      { public_id: imageName , resource_type},
       function (error, result) {
         // Delete the file whether it succeeds or fails
         fs.unlink(filePath, (err) => {
