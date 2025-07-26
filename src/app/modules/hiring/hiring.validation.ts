@@ -2,9 +2,6 @@ import { z } from 'zod'
 
 const createHiringSchema = z.object({
   body: z.object({
-    companyName: z.string({
-      required_error: 'Company name is required'
-    }),
     title: z.string({
       required_error: 'Title is required'
     }),
@@ -50,7 +47,6 @@ const createHiringSchema = z.object({
 
 const updateHiringSchema = z.object({
   body: z.object({
-    companyName: z.string().optional(),
     title: z.string().optional(),
     experience: z.string().optional(),
     requirements: z.string().optional(),

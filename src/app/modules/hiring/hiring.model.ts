@@ -3,11 +3,6 @@ import { IHiring } from './hiring.interface'
 
 const HiringSchema = new Schema<IHiring>(
   {
-    companyName: {
-      type: String,
-      required: [true, 'Company name is required'],
-      trim: true
-    },
     title: {
       type: String,
       required: [true, 'Title is required'],
