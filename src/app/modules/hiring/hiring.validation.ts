@@ -65,7 +65,7 @@ const updateHiringSchema = z.object({
     metaImageAlt: z.string().optional()
   })
 })
-
+//
 export const hiringValidation = {
   createHiringSchema,
   updateHiringSchema
